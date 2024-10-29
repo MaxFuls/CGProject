@@ -1,0 +1,7 @@
+env : "dev"
+storage : "./storage"
+http_server: 
+  addres : "localhost"
+  port: "8082"
+  timeout: 4s
+  idle-timeout: 60s
