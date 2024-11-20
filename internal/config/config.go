@@ -12,6 +12,7 @@ type Config struct {
 	Env        string `yaml:"env" env-required:"true"`
 	Storage    string `yaml:"storage"`
 	HTTPServer `yaml:"http_server"`
+	Pages      `yaml:"pages"`
 }
 
 type HTTPServer struct {
@@ -19,6 +20,12 @@ type HTTPServer struct {
 	Port        string        `yaml:"port" env-default:"8080"`
 	Timeout     time.Duration `yaml:"timeout" env-default:"4s"`
 	IdleTimeout time.Duration `yaml:"idle-timeout" env-default:"60s"`
+}
+
+type Pages struct {
+	EqualsPage  string `yaml:"equals"`
+	MolarPage   string `yaml:"molar"`
+	BalancePage string `yaml:"balance"`
 }
 
 func LoadConfig() Config {
