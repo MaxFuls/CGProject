@@ -4,25 +4,6 @@
     <meta charset="utf-8" />
 </head>
 <body>
-<form name="search">
-    <input type="text" name="key"></input>
-    <input type="submit" name="send" value="Отправить" />
-</form>
-<script>
-function sendForm(e){
-     
-    const keyBox = document.search.key;
-    const val = keyBox.value;
-    if(val.length<3){
-        alert("Недопустимая длина строки");
-        e.preventDefault();
-    }   
-    else
-        alert("Отправка разрешена");
-}
- 
-const sendButton = document.search.send;
-sendButton.addEventListener("click", sendForm);
-</script>
+    <a> </a>
 </body>
 </html>

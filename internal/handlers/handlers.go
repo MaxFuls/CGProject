@@ -10,7 +10,7 @@ import (
 
 func RootHandlerFunc(c echo.Context) error {
 	config := config.LoadConfig()
-	content, err := os.ReadFile(config.Root + "/equals.html")
+	content, err := os.ReadFile(config.Root + "/index.html")
 	if err != nil {
 		return c.String(http.StatusNotFound, err.Error())
 	}
@@ -19,6 +19,7 @@ func RootHandlerFunc(c echo.Context) error {
 
 // func MolarHandlerFunc(c echo.Context) error {
 // 	config := config.LoadConfig()
+
 // 	return nil
 // }
 

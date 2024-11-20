@@ -22,11 +22,32 @@ a {
     text-decoration: none;
     cursor: pointer;
     font-family: 'Roboto';
-    font-weight: 400;
+    font-weight: 500;
     font-size: 24px;
     text-align: center;
 }
 
+h2 {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 32px;
+    margin: 0;
+}
+
+h3 {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 24px;
+    margin: 0;
+}
+
+h4 {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 20px;
+    margin: 0;
+    color: rgb(143, 143, 143);
+}
 
 .logo-text {
     font-family: 'Roboto';
@@ -39,14 +60,15 @@ a {
 .regular-text {
     font-family: 'Roboto';
     font-weight: 400;
-    color: rgb(75, 75, 75);
+    color: rgb(143, 143, 143);
     font-size: 16;
+    margin: 0;
 }
 
 .center-container {
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
+    width: 70%;
 }
 
 .row-container {
@@ -54,6 +76,15 @@ a {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+
+.column-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    gap: 40px;
 }
 
 .logo-group {
@@ -67,4 +98,64 @@ a {
     flex-direction: row;
     align-items: center;
     gap: 20px;
+}
+
+.footer-logos-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.info-card {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: start;
+}
+
+.info-card-headings-group {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.awards-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.award-card {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    max-width: 300px;
+}
+
+.award-card-description {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: start;
+}
+
+.info-card-image-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    height: 240px;
+}
+
+.info-card-image {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+
 }
