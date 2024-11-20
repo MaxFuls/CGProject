@@ -5,3 +5,4 @@ http_server:
   port: "8082"
   timeout: 4s
   idle-timeout: 60s
+index : ""
