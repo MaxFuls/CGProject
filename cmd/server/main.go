@@ -16,7 +16,7 @@ func main() {
 	log.Debug("Debug messages are enabled")
 	e := echo.New()
 	e.GET("/", handlers.RootHandlerFunc)
-	// e.GET("/molar", handlers.MolarHandlerFunc)
-	// e.GET("/balance", handlers.BalanceHandlerFunc)
+	e.GET("/molar", handlers.MolarHandlerFunc)
+	e.GET("/balance", handlers.BalanceHandlerFunc)
 	e.Start(config.Address + ":" + config.Port)
 }
