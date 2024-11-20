@@ -10,7 +10,7 @@ import (
 
 func RootHandlerFunc(c echo.Context) error {
 	config := config.LoadConfig()
-	content, err := os.ReadFile(config.Pages.EqualsPage)
+	content, err := os.ReadFile(config.Root + "/equals")
 	if err != nil {
 		return c.String(http.StatusNotFound, err.Error())
 	}
