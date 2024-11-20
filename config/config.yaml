@@ -5,7 +5,7 @@ http_server:
   port: "8888"
   timeout: 4s
   idle-timeout: 60s
-pages :
-  equals_page : "../front/equals.html"
-  molar_page : "../front/molar.html"
-  balance_page : "../front/balance.html"
+pages:
+  equals_page : "front/equals.html"
+  molar_page : "front/molar.html"
+  balance_page : "front/balance.html"

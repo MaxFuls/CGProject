@@ -23,9 +23,9 @@ type HTTPServer struct {
 }
 
 type Pages struct {
-	EqualsPage  string `yaml:"equals"`
-	MolarPage   string `yaml:"molar"`
-	BalancePage string `yaml:"balance"`
+	EqualsPage  string `yaml:"equals_page"`
+	MolarPage   string `yaml:"molar_page"`
+	BalancePage string `yaml:"balance_page"`
 }
 
 func LoadConfig() Config {
