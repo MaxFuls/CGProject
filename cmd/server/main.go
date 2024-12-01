@@ -15,6 +15,7 @@ func main() {
 	log.Info("Starting server")
 	log.Debug("Debug messages are enabled")
 	e := echo.New()
+	e.Static("/frontend", "frontend")
 	e.GET("/", handlers.RootHandlerFunc)
 	e.GET("/molar", handlers.MolarHandlerFunc)
 	e.GET("/balance", handlers.BalanceHandlerFunc)
