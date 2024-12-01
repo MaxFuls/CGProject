@@ -21,7 +21,7 @@ func main() {
 	e.GET("/", handlers.RootHandlerFunc)
 	e.GET("/molar", handlers.MolarHandlerFunc)
 	e.GET("/balance", handlers.BalanceHandlerFunc)
-	e.POST("/submit", func(c echo.Context) error {
+	e.POST("/molar", func(c echo.Context) error {
 		name := c.FormValue("name")
 		email := c.FormValue("email")
 		return c.String(200, name+email)
