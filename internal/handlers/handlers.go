@@ -10,11 +10,11 @@ import (
 
 func RootHandlerFunc(c echo.Context) error {
 	config := config.LoadConfig()
-	content, err := os.ReadFile(config.Root + "/index.html")
-	if err != nil {
-		return c.String(http.StatusNotFound, err.Error())
-	}
-	return c.HTML(200, string(content))
+	// content, err := os.ReadFile(config.Root + "/index.html")
+	// if err != nil {
+	// return c.String(http.StatusNotFound, err.Error())
+	// }
+	return c.Render(200, config.Root+"/index.html", nil)
 }
 
 func MolarHandlerFunc(c echo.Context) error {
