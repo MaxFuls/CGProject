@@ -9,12 +9,12 @@ import (
 )
 
 func RootHandlerFunc(c echo.Context) error {
-	// config := config.LoadConfig()
-	// content, err := os.ReadFile(config.Root + "/index.html")
-	// if err != nil {
-	// return c.String(http.StatusNotFound, err.Error())
-	// }
-	return c.Render(200, "index.html", nil)
+	config := config.LoadConfig()
+	content, err := os.ReadFile(config.Root + "/index.html")
+	if err != nil {
+		return c.String(http.StatusNotFound, err.Error())
+	}
+	return c.HTMLBlob(200, content)
 }
 
 func MolarHandlerFunc(c echo.Context) error {
@@ -23,7 +23,7 @@ func MolarHandlerFunc(c echo.Context) error {
 	if err != nil {
 		return c.String(http.StatusNotFound, err.Error())
 	}
-	return c.HTML(200, string(content))
+	return c.HTMLBlob(200, content)
 }
 
 func BalanceHandlerFunc(c echo.Context) error {
@@ -32,5 +32,5 @@ func BalanceHandlerFunc(c echo.Context) error {
 	if err != nil {
 		return c.String(http.StatusNotFound, err.Error())
 	}
-	return c.HTML(200, string(content))
+	return c.HTMLBlob(200, content)
 }
