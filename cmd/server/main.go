@@ -19,13 +19,9 @@ func main() {
 	e := echo.New()
 	e.Use(middleware.Static("frontend"))
 	e.GET("/", handlers.RootHandlerFunc)
-	e.GET("/molar", handlers.MolarHandlerFunc)
-	e.GET("/balance", handlers.BalanceHandlerFunc)
-	e.POST("/molar", handlers.MolarHandlerFunc)
-	// func(c echo.Context) error {
-	// name := c.FormValue("name")
-	// email := c.FormValue("email")
-	// return c.String(200, name+email)
-	// })
+	e.GET("/molar", handlers.MolarGetHandler)
+	e.POST("/molar", handlers.MolarPostHandler)
+	e.GET("/balance", handlers.BalanceGetHandler)
+	e.POST("/balance", handlers.BalancePostHandler)
 	e.Start(config.Address + ":" + config.Port)
 }
