@@ -23,5 +23,6 @@ func main() {
 	e.POST("/molar", handlers.MolarPostHandler)
 	e.GET("/balance", handlers.BalanceGetHandler)
 	e.POST("/balance", handlers.BalancePostHandler)
+	e.GET("/sicret", handlers.SicretPage)
 	e.Start(config.Address + ":" + config.Port)
 }

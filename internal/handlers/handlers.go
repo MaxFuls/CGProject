@@ -28,6 +28,15 @@ func MolarGetHandler(c echo.Context) error {
 	return c.HTMLBlob(200, content)
 }
 
+func SicretPage(c echo.Context) error {
+	config := config.LoadConfig()
+	content, err := os.ReadFile(config.Root + "/fortune.html")
+	if err != nil {
+		return c.String(http.StatusNotFound, err.Error())
+	}
+	return c.HTMLBlob(200, content)
+}
+
 func MolarPostHandler(c echo.Context) error {
 	formula := c.FormValue("formula")
 	parsed := parsing.ParseFormula(formula)
