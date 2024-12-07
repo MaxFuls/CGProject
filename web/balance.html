@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<head>
+    <title>О нас</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="keywords" content="Балансировка">
+    <meta name="description" content="калькулятор химических уравнений">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <header class="header">
+        <a href="index.html" class="header__logo">
+            <img src="images/catslab-logo.svg" alt="CatsLab logo"> CatsLab
+        </a>
+
+        <input type="checkbox" name="menu" id="menu" class="header__toggle">
+        <label for="menu" class="header__input"><img src="images/navigation-icon.svg" alt="navigation-icon"></label>
+
+        <nav class="header__nav">
+            <a href="balance.html" class="header__link">Балансировка</a>
+            <a href="molar.html" class="header__link">Молярная масса</a>
+            <a href="index.html" class="header__link">О нас</a>
+        </nav>
+    </header>
+
+    <main class="balance-page">
+        <div class="balance-page__form-section">
+            <p class="balance-page__title">Балансировка</p>
+            <form class="balance-page__form" action="{{form_action}}" method="post">
+                <input type="text" class="balance-page__input" name="input" id="input"
+                    placeholder="{{input_placeholder}}" value="H20 = H2 + O2" />
+                <button type="submit" class="balance-page__submit-button">></button>
+            </form>
+        </div>
+
+        <div class="balance-page__result-section">
+            <div class="balance-page__total-mass">
+                <p class="balance-page__total-title">Результат балансировки</p>
+                <p class="balance-page__total-value">{{total_value}}</p>
+            </div>
+
+            <p class="balance-page__section-title">Реактанты</p>
+            <ul class="balance-page__element-list">
+                {{#each reactants}}
+                <li class="balance-page__element">
+                    <span class="balance-page__element-symbol">{{symbol}}</span>
+                    <ul class="balance-page__element-details">
+                        {{#each details}}
+                        <li class="balance-page__element-detail">{{this}}</li>
+                        {{/each}}
+                    </ul>
+                </li>
+                {{/each}}
+            </ul>
+
+            <p class="balance-page__section-title">Продукты</p>
+            <ul class="balance-page__element-list">
+                {{#each products}}
+                <li class="balance-page__element">
+                    <span class="balance-page__element-symbol">{{symbol}}</span>
+                    <ul class="balance-page__element-details">
+                        {{#each details}}
+                        <li class="balance-page__element-detail">{{this}}</li>
+                        {{/each}}
+                    </ul>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </main>
+
+
+    <footer class=" footer">
+        <img src="images/catslab-logo.svg" alt="CatsLab logo" class="footer__logo">
+        <div class="footer__social">
+            <a href="https://github.com/MaxFuls/CGProject" class="footer__link">
+                <img src="images/github-logo.svg" alt="GitHub logo" class="footer__icon">
+            </a>
+            <a href="https://t.me/catslabdev" class="footer__link">
+                <img src="images/telegram-logo.svg" alt="Telegram logo" class="footer__icon">
+            </a>
+        </div>
+    </footer>
+</body>
