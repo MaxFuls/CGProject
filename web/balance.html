@@ -29,12 +29,46 @@
         <div class="balance-page__form-section">
             <p class="balance-page__title">Балансировка</p>
             <form class="balance-page__form" action="post">
-                <input type="text" class="balance-page__input" name="input" id="input" value="Например H20" />
+                <input type="text" class="balance-page__input" name="input" id="input" value="Например H20 = H2 + O2" />
                 <button type="submit" class="balance-page__submit-button">></button>
             </form>
         </div>
-    </main>
+        <div class="balance-page__result-section">
+            <div class="balance-page__total-mass">
+                <p class="balance-page__total-title">Результат балансировки</p>
+                <p class="balance-page__total-value">H20 = 2H2 + O2</p>
+            </div>
 
+            <p class="balance-page__section-title">Реактанты</p>
+            <ul class="balance-page__element-list">
+                <li class="balance-page__element">
+                    H20
+                    <ul class="balance-page__element-details">
+                        <li class="balance-page__element-detail">Название: вода</li>
+                        <li class="balance-page__element-detail">Внешний вид: не имеющая запаха бесцветная жидкость</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p class="balance-page__section-title">Продукты</p>
+            <ul class="balance-page__element-list">
+                <li class="balance-page__element">
+                    H2
+                    <ul class="balance-page__element-details">
+                        <li class="balance-page__element-detail">Название: водород</li>
+                        <li class="balance-page__element-detail">Внешний вид: не имеющий запаха бесцветный газ</li>
+                    </ul>
+                </li>
+                <li class="balance-page__element">
+                    O2
+                    <ul class="balance-page__element-details">
+                        <li class="balance-page__element-detail">Название: кислород</li>
+                        <li class="balance-page__element-detail">Внешний вид: не имеющий запаха бесцветный газ</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </main>
 
     <footer class=" footer">
         <img src="images/catslab-logo.svg" alt="CatsLab logo" class="footer__logo">
