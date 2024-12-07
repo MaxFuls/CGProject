@@ -26,7 +26,7 @@
     border: none;
     outline: none;
     text-decoration: none;
-    list-style: none;
+    /*list-style: none;*/
 }
 
 .header {
@@ -160,6 +160,79 @@
 
 .info-section__award-description {
     font-size: 16px;
+    color: var(--secondary-color);
+}
+
+.molar-mass {
+    width: 100%;
+    padding: 0 10%;
+}
+
+.molar-mass__form-section {
+    width: 70%;
+    margin: 0 auto 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.molar-mass__title {
+    font-size: 32px;
+    color: var(--primary-color);
+}
+
+.molar-mass__form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 0px;
+}
+
+.molar-mass__input {
+    width: 90%;
+    border: 1px solid var(--primary-color);
+    padding: 10px;
+}
+
+.molar-mass__submit-button {
+    width: 10%;
+    background-color: white;
+    border: 1px solid var(--primary-color);
+    border-left: 0px;
+}
+
+.molar-mass__result-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.molar-mass__total-title {
+    font-size: 24px;
+    color: var(--primary-color)
+}
+
+.molar-mass__total-value {
+    font-size: 20px;
+    color: var(--secondary-color)
+}
+
+.molar-mass__element-list {
+    padding: 0 10%;
+    list-style: square outside;
+    color: var(--primary-color);
+}
+
+.molar-mass__element-details {
+    list-style: inside;
+    color: var(--primary-color);
+}
+
+.molar-mass__element-detail {
+    list-style: inside;
     color: var(--secondary-color);
 }
 
