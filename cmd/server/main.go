@@ -17,7 +17,7 @@ func main() {
 	log.Debug("Debug messages are enabled")
 
 	e := echo.New()
-	e.Use(middleware.Static("frontend"))
+	e.Use(middleware.Static(config.Root))
 	e.GET("/", handlers.RootHandlerFunc)
 	e.GET("/molar", handlers.MolarGetHandler)
 	e.POST("/molar", handlers.MolarPostHandler)

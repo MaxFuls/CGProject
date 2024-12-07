@@ -5,4 +5,4 @@ http_server:
   port: "8888"
   timeout: 4s
   idle-timeout: 60s
-root : "frontend"
+root : "web"
