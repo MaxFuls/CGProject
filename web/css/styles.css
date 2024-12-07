@@ -210,6 +210,11 @@
     margin-bottom: 40px;
 }
 
+.molar-mass__total-mass {
+    padding-left: 8%;
+}
+
+
 .molar-mass__total-title {
     font-size: 24px;
     color: var(--primary-color)
