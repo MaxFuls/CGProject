@@ -241,6 +241,45 @@
     color: var(--secondary-color);
 }
 
+.balance-page {
+    width: 100%;
+    padding: 0 10%;
+}
+
+.balance-page__form-section {
+    width: 70%;
+    margin: 0 auto 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.balance-page__title {
+    font-size: 32px;
+    color: var(--primary-color);
+}
+
+.balance-page__form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 0px;
+}
+
+.balance-page__input {
+    width: 90%;
+    border: 1px solid var(--primary-color);
+    padding: 10px;
+}
+
+.balance-page__submit-button {
+    width: 10%;
+    background-color: white;
+    border: 1px solid var(--primary-color);
+    border-left: 0px;
+}
+
 @media (max-width: 700px) {
     .header__input {
         visibility: visible;
