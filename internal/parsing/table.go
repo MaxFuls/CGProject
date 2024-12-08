@@ -48,3 +48,50 @@ func GetMolarMass(name string) (float64, error) {
 		return 0.0, errors.New("incorrect input")
 	}
 }
+
+func GetRussianName(name string) (string, error) {
+	chem_table := map[string]string{
+		"H":  "водород",
+		"He": "гелий",
+		"Li": "литий",
+		"Be": "берилий",
+		"B":  "бор",
+		"C":  "углерод",
+		"N":  "азот",
+		"O":  "кислород",
+		"F":  "фтор",
+		"Ne": "неон",
+		"Na": "натрий",
+		"Mg": "магний",
+		"Al": "алюминий",
+		"Si": "кремний",
+		"P":  "фосфор",
+		"S":  "сера",
+		"Cl": "хлор",
+		"Ar": "аргон",
+		"K":  "калий",
+		"Ca": "кальций",
+		"Sc": "скандий",
+		"Ti": "титан",
+		"V":  "ванадий",
+		"Cr": "хром",
+		"Mn": "марганец",
+		"Fe": "железо",
+		"Co": "кобальт",
+		"Ni": "никель",
+		"Cu": "медь",
+		"Zn": "цинк",
+		"Ga": "галий",
+		"ge": "германий",
+		"As": "мышьяк",
+		"Se": "селен",
+		"Br": "бром",
+		"Kr": "криптон",
+	}
+	mass, is_exist := chem_table[name]
+	if is_exist {
+		return mass, nil
+	} else {
+		return "", errors.New("incorrect input")
+	}
+}

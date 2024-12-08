@@ -12,7 +12,7 @@
 <body>
     <div class="wrapper">
         <header class="header">
-            <a href="index.html" class="header__logo">
+            <a href="/" class="header__logo">
                 <img src="images/catslab-logo.svg" alt="CatsLab logo"> CatsLab
             </a>
 
@@ -20,17 +20,17 @@
             <label for="menu" class="header__input"><img src="images/navigation-icon.svg" alt="navigation-icon"></label>
 
             <nav class="header__nav">
-                <a href="balance.html" class="header__link">Балансировка</a>
-                <a href="molar.html" class="header__link">Молярная масса</a>
-                <a href="index.html" class="header__link">О нас</a>
+                <a href="/balance" class="header__link">Балансировка</a>
+                <a href="/molar" class="header__link">Молярная масса</a>
+                <a href="/" class="header__link">О нас</a>
             </nav>
         </header>
 
         <main class="molar-mass">
             <div class="molar-mass__form-section">
                 <p class="molar-mass__title">Молярная масса</p>
-                <form class="molar-mass__form" action="{{form_action}}" method="post">
-                    <input type="text" class="molar-mass__input" name="input" id="input" placeholder="H2O" />
+                <form class="molar-mass__form" action="/molar" method="post">
+                    <input type="text" class="molar-mass__input" name="formula" id="input" placeholder="H2O" />
                     <button type="submit" class="molar-mass__submit-button">></button>
                 </form>
             </div>

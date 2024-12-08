@@ -45,7 +45,7 @@ func MolarPostHandler(c echo.Context) error {
 	for key, count := range parsed {
 		mass, err := parsing.GetMolarMass(key)
 		if err != nil {
-			//
+			c.String(400, "You are debil")
 		}
 		elements[key] = mass * float64(count)
 		general_mass += elements[key]
