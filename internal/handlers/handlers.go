@@ -6,9 +6,21 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strconv"
 
 	"github.com/labstack/echo/v4"
 )
+
+type ElementInfo struct {
+	Symbol string
+	Details []string
+}
+
+type ElementDiscription struct {
+	Formula string
+	Total string
+	Elements []ElementInfo 
+}
 
 func RootHandlerFunc(c echo.Context) error {
 	config := config.LoadConfig()
@@ -38,24 +50,34 @@ func SicretPage(c echo.Context) error {
 }
 
 func MolarPostHandler(c echo.Context) error {
+	
 	formula := c.FormValue("formula")
 	parsed := parsing.ParseFormula(formula)
 	elements := make(map[string]float64)
-	general_mass := 0.0
+	
+	total := 0.0
 	for key, count := range parsed {
 		mass, err := parsing.GetMolarMass(key)
 		if err != nil {
-			c.String(400, "You are debil")
+			return c.String(400, "pizdec")
 		}
 		elements[key] = mass * float64(count)
-		general_mass += elements[key]
+		total += elements[key]
 	}
-	var str string
-	for key, value := range elements {
-		str += fmt.Sprintf("%s - %f %% \n", key, (value/general_mass)*100.0)
+	
+	var disc ElementDiscription
+	disc.Total = fmt.Sprintf("%.3f g/mol", total)
+	disc.Formula = formula
+	for key, count := range parsed {
+		russian, _ := parsing.GetRussianName(key)
+		percent := (elements[key] / total) * 100;
+		disc.Elements = append(disc.Elements,
+			ElementInfo{key, []string{"Название: " + russian,
+									  "Масса в соединении: " + fmt.Sprintf("%.3f g/mol", elements[key]),
+									  "Количество атомов: " + strconv.Itoa(count),
+									  "Процент от общей массы: " + fmt.Sprintf("%.3f %%", percent)}})
 	}
-	str += fmt.Sprintf("General mass is %f", general_mass)
-	return c.String(200, str)
+	return c.Render(200, "molar", disc)
 }
 
 func BalanceGetHandler(c echo.Context) error {
