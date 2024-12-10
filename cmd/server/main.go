@@ -9,7 +9,6 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	_ "github.com/lib/pq"
 )
 
 type Template struct {
@@ -22,6 +21,7 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 
 
 func main() {
+	
 	config := config.LoadConfig()
 	log := logger.SetupLogger(config.Env)
 	log.Info("Starting server")
@@ -30,15 +30,14 @@ func main() {
 	e := echo.New()
 
 	t := &Template{
-		templates: template.Must(template.ParseGlob("web/templates/molar.html")),
-	}
+		templates: template.Must(template.ParseGlob("web/templates/*.html"))}
 	e.Renderer = t;
+
 	e.Use(middleware.Static(config.Root))
 	e.GET("/", handlers.RootHandlerFunc)
 	e.GET("/molar", handlers.MolarGetHandler)
 	e.POST("/molar", handlers.MolarPostHandler)
 	e.GET("/balance", handlers.BalanceGetHandler)
 	e.POST("/balance", handlers.BalancePostHandler)
-	e.GET("/sicret", handlers.SicretPage)
 	e.Start(config.Address + ":" + config.Port)
 }
