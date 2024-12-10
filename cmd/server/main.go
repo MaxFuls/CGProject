@@ -6,6 +6,8 @@ import (
 	"ChemistryPR/internal/logger"
 	"html/template"
 	"io"
+	"net/http"
+	"os"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -39,5 +41,12 @@ func main() {
 	e.POST("/molar", handlers.MolarPostHandler)
 	e.GET("/balance", handlers.BalanceGetHandler)
 	e.POST("/balance", handlers.BalancePostHandler)
+	e.GET("/fortune", func (c echo.Context) error {
+		content, err := os.ReadFile("web/fortune.html")
+		if err != nil {
+			return c.String(http.StatusNotFound, err.Error())
+		}
+		return c.HTMLBlob(200, content)
+	})
 	e.Start(config.Address + ":" + config.Port)
 }
