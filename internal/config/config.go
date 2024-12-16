@@ -10,7 +10,8 @@ import (
 
 type Config struct {
 	Env        string `yaml:"env" env-required:"true"`
-	Storage    string `yaml:"storage"`
+	Driver     string `yaml:"driver"`
+	Dns        string `yaml:"dns"`
 	Root       string `yaml:"root"`
 	HTTPServer `yaml:"http_server"`
 }

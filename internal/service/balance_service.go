@@ -38,7 +38,7 @@ type BalanceResponse struct {
 //	Returns an empty slice if no compounds are found or an error occurs.
 //	error: An error object if there's an issue during retrieval from the data store.
 func (service BalanceService) fillCompoundInfo(formulas []string) ([]BalanceCompoundInfo, error) {
-	compounds, err := service.store.GetCompounds(formulas)
+	compounds, err := service.Store.GetCompounds(formulas)
 	if err != nil {
 		return nil, err
 	}

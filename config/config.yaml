@@ -1,5 +1,6 @@
 env : "dev"
-storage : "./storage"
+driver : "sqlite"
+dns : "~/chem.db"
 http_server: 
   addres : "localhost"
   port: "8888"

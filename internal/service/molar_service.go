@@ -15,7 +15,8 @@ type MolarMassService struct {
 // the count of atoms of that element, and the weight percentage
 // of the element in the compound.
 type MolarMassElementInfo struct {
-	Name             string  // Name of the element
+	Name             string // Name of the element
+	Symbol           string
 	WeightInCompound float64 // Weight of the element in the compound
 	AtomsCount       uint16  // Number of atoms of the element in the compound
 	WeightPercent    float64 // Weight percentage of the element in the compound
@@ -25,8 +26,8 @@ type MolarMassElementInfo struct {
 // calculation, including the total general weight and a list
 // of element information.
 type MolarMassResponse struct {
-	Total float64                // Total weight of the compound
-	Elements  []MolarMassElementInfo // Slice of element information
+	Total    float64                // Total weight of the compound
+	Elements []MolarMassElementInfo // Slice of element information
 }
 
 // GetResponse processes the provided requestedData string to
@@ -46,12 +47,12 @@ type MolarMassResponse struct {
 //   - error: An error indicator, nil if no errors occurred.
 func (service MolarMassService) GetResponse(requestedData string) (MolarMassResponse, error) {
 	response := MolarMassResponse{}
-	response.ElementsInfo = nil
+	response.Elements = nil
 	compound, err := service.ParseCompound(requestedData)
 	if err != nil {
 		return response, err
 	}
-	elements, err := service.store.GetElements(compound)
+	elements, err := service.Store.GetElements(compound)
 	if err != nil {
 		return response, nil
 	}
@@ -89,13 +90,14 @@ func (service MolarMassService) ComputeData(compound models.Compound, elements [
 
 	for i, element := range elements {
 		elementsInfo[i].Name = element.Name
+		elementsInfo[i].Symbol = element.Symbol
 		elementsInfo[i].AtomsCount = uint16(compound.Data[element.Symbol])
 		elementsInfo[i].WeightInCompound = element.AtomicWeight * float64(compound.Data[element.Symbol])
 		elementsInfo[i].WeightPercent = elementsInfo[i].WeightInCompound / generalWeight * 100
 	}
 
 	return MolarMassResponse{
-		GeneralWeight: generalWeight,
-		ElementsInfo:  elementsInfo,
+		Total:    generalWeight,
+		Elements: elementsInfo,
 	}
 }

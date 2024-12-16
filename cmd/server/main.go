@@ -2,6 +2,7 @@ package main
 
 import (
 	"ChemistryPR/internal/config"
+	"ChemistryPR/internal/database"
 	"ChemistryPR/internal/handlers"
 	"ChemistryPR/internal/logger"
 	"html/template"
@@ -11,29 +12,35 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	_ "modernc.org/sqlite"
 )
 
 type Template struct {
-    templates *template.Template
+	templates *template.Template
 }
 
 func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
 	return t.templates.ExecuteTemplate(w, name, data)
 }
 
-
 func main() {
-	
+
 	config := config.LoadConfig()
 	log := logger.SetupLogger(config.Env)
 	log.Info("Starting server")
 	log.Debug("Debug messages are enabled")
+	_, closeFunc, err := database.OpenDB(config.Driver, config.Dns)
+	if err != nil {
+		log.Debug("pizda")
+		panic("pizda")
+	}
+	defer closeFunc()
 
 	e := echo.New()
 
 	t := &Template{
 		templates: template.Must(template.ParseGlob("web/templates/*.html"))}
-	e.Renderer = t;
+	e.Renderer = t
 
 	e.Use(middleware.Static(config.Root))
 	e.GET("/", handlers.RootHandlerFunc)
@@ -41,7 +48,7 @@ func main() {
 	e.POST("/molar", handlers.MolarPostHandler)
 	e.GET("/balance", handlers.BalanceGetHandler)
 	e.POST("/balance", handlers.BalancePostHandler)
-	e.GET("/fortune", func (c echo.Context) error {
+	e.GET("/fortune", func(c echo.Context) error {
 		content, err := os.ReadFile("web/fortune.html")
 		if err != nil {
 			return c.String(http.StatusNotFound, err.Error())

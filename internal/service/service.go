@@ -16,7 +16,7 @@ import (
 // operations related to the underlying storage of chemical elements
 // and compounds.
 type ChemicalService struct {
-	store database.Store
+	Store database.Store
 }
 
 // ParseCompound parses a chemical formula and returns a Compound object

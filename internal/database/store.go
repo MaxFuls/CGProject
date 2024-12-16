@@ -34,7 +34,7 @@ import (
 //     to close the database connection and prevent resource leaks.
 //   - The `sql.DB` object is thread-safe and can be used concurrently by multiple
 //     goroutines.
-func openDB(driver, dns string) (*sql.DB, func(), error) {
+func OpenDB(driver, dns string) (*sql.DB, func(), error) {
 	db, err := sql.Open(driver, dns)
 	if err != nil {
 		return nil, nil, err
@@ -55,6 +55,10 @@ func openDB(driver, dns string) (*sql.DB, func(), error) {
 // allowing for database operations such as querying and transactions.
 type Store struct {
 	DB *sql.DB
+}
+
+func NewStore(db *sql.DB) Store {
+	return Store{DB: db}
 }
 
 // GetElement retrieves an element from the periodic table by its symbol.
