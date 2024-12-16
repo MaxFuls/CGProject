@@ -48,7 +48,12 @@
                 <ul class="balance-page__element-list">
                     {{range .Reagents}}
                     <li class="balance-page__element">
-                        <span class="balance-page__element-symbol">{{.}}</span>
+                        {{.Formula}}
+                        <ul class="balance-page__element-details">
+                            <li class="balance-page__element-detail">Название: {{.Name}}</li>
+                            <li class="balance-page__element-detail">Внешний вид: {{.Appearance}}
+                            </li>
+                        </ul>
                     </li>
                     {{end}}
                 </ul>
@@ -57,7 +62,12 @@
                 <ul class="balance-page__element-list">
                     {{range .Products}}
                     <li class="balance-page__element">
-                        <span class="balance-page__element-symbol">{{.}}</span>
+                        {{.Formula}}
+                        <ul class="balance-page__element-details">
+                            <li class="balance-page__element-detail">Название: {{.Name}}</li>
+                            <li class="balance-page__element-detail">Внешний вид: {{.Appearance}}
+                            </li>
+                        </ul>
                     </li>
                     {{end}}
                 </ul>

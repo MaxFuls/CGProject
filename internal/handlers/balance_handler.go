@@ -2,12 +2,13 @@ package handlers
 
 import (
 	"ChemistryPR/internal/config"
-	"ChemistryPR/internal/parsing"
+	"ChemistryPR/internal/database"
+	"ChemistryPR/internal/services"
 	"net/http"
 	"os"
-	"strings"
 
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/gommon/log"
 )
 
 // type SubstanceDiscription struct {
@@ -17,9 +18,9 @@ import (
 
 type BalanceResponse struct {
 	Reaction string
-	Result string
-	Reagents []string//SubstanceDiscription
-	Products []string//SubstanceDiscription
+	Result   string
+	Reagents []string //SubstanceDiscription
+	Products []string //SubstanceDiscription
 }
 
 func BalanceGetHandler(c echo.Context) error {
@@ -32,35 +33,19 @@ func BalanceGetHandler(c echo.Context) error {
 }
 
 func BalancePostHandler(c echo.Context) error {
-	reaction := c.FormValue("reaction")
-	reaction = strings.ReplaceAll(reaction, " ", "")
-	var response BalanceResponse
-	response.Reaction = reaction
-	var reagents []string
-	var products []string
-	is_reagents := true  
-	previous := 0
-	for i, c := range reaction {
-		if c == '+' && is_reagents {
-			reagents = append(reagents, reaction[previous:i])
-			previous = i + 1
-		} else if c == '+' && !is_reagents {
-			products = append(products, reaction[previous:i])
-			previous = i + 1
-		}
-		if c == '=' {
-			reagents = append(reagents, reaction[previous:i])
-			previous = i + 1
-			is_reagents = false
-		}
-	}
-	products = append(products, reaction[previous:])
-	result, err := parsing.BalanceEquation(reagents, products)
+	config := config.LoadConfig()
+	db, closeFunc, err := database.OpenDB(config.Driver, "chem.db")
 	if err != nil {
-		return c.String(http.StatusInternalServerError, "parsing error")
+		log.Debug("pizda bd nakrilas")
+		panic("pizda bd nakrilas")
 	}
-	response.Result = result
-	response.Reagents = reagents
-	response.Products = products
+	defer closeFunc()
+	reaction := c.FormValue("reaction")
+	service := services.BalanceService{}
+	service.Store = database.NewStore(db)
+	response, err := service.GetResponse(reaction)
+	for err != nil {
+		c.String(http.StatusBadRequest, "pizda huinu napisal")
+	}
 	return c.Render(http.StatusOK, "balance", response)
 }
