@@ -48,9 +48,10 @@
                     <li class="molar-mass__element">
                         <span class="molar-mass__element-symbol">{{.Symbol}}</span>
                         <ul class="molar-mass__element-details">
-                            {{range .Details}}
-                            <li class="molar-mass__element-detail">{{.}}</li>
-                            {{end}}
+                            <li class="molar-mass__element-detail">{{.Name}}</li>
+                            <li class="molar-mass__element-detail">{{.WeightInCompound}}</li>
+                            <li class="molar-mass__element-detail">{{.AtomsCount}}</li>
+                            <li class="molar-mass__element-detail">{{.WeightPercent}}</li>
                         </ul>
                     </li>
                     {{end}}
