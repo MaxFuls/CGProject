@@ -1,6 +1,9 @@
 package services
 
-import "ChemistryPR/internal/models"
+import (
+	"ChemistryPR/internal/models"
+	"fmt"
+)
 
 // MolarMassService is a service that provides functionalities
 // related to calculating the molar mass of chemical compounds.
@@ -15,17 +18,18 @@ type MolarMassService struct {
 // the count of atoms of that element, and the weight percentage
 // of the element in the compound.
 type MolarMassElementInfo struct {
-	Name             string // Name of the element
 	Symbol           string
-	WeightInCompound float64 // Weight of the element in the compound
-	AtomsCount       uint16  // Number of atoms of the element in the compound
-	WeightPercent    float64 // Weight percentage of the element in the compound
+	Name             string // Name of the element
+	WeightInCompound string // Weight of the element in the compound
+	AtomsCount       string // Number of atoms of the element in the compound
+	WeightPercent    string // Weight percentage of the element in the compound
 }
 
 // MolarMassResponse encapsulates the result of a molar mass
 // calculation, including the total general weight and a list
 // of element information.
 type MolarMassResponse struct {
+	Formula  string
 	Total    float64                // Total weight of the compound
 	Elements []MolarMassElementInfo // Slice of element information
 }
@@ -54,10 +58,11 @@ func (service MolarMassService) GetResponse(requestedData string) (MolarMassResp
 	}
 	elements, err := service.Store.GetElements(compound)
 	if err != nil {
-		return response, nil
+		return response, err
 	}
 
 	response = service.ComputeData(compound, elements)
+	response.Formula = requestedData
 
 	return response, nil
 }
@@ -86,14 +91,15 @@ func (service MolarMassService) ComputeData(compound models.Compound, elements [
 		elementWeight := element.AtomicWeight * float64(compound.Data[element.Symbol])
 		sumWeight += elementWeight
 	}
-	generalWeight = sumWeight / float64(len(elements))
+	generalWeight = sumWeight
 
 	for i, element := range elements {
 		elementsInfo[i].Name = element.Name
 		elementsInfo[i].Symbol = element.Symbol
-		elementsInfo[i].AtomsCount = uint16(compound.Data[element.Symbol])
-		elementsInfo[i].WeightInCompound = element.AtomicWeight * float64(compound.Data[element.Symbol])
-		elementsInfo[i].WeightPercent = elementsInfo[i].WeightInCompound / generalWeight * 100
+		elementsInfo[i].AtomsCount = fmt.Sprint(compound.Data[element.Symbol])
+		weigth := element.AtomicWeight * float64(compound.Data[element.Symbol])
+		elementsInfo[i].WeightInCompound = fmt.Sprintf("%.3f", weigth)
+		elementsInfo[i].WeightPercent = fmt.Sprintf("%.3f", weigth/generalWeight*100)
 	}
 
 	return MolarMassResponse{

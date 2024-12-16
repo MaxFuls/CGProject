@@ -77,7 +77,7 @@ func NewStore(db *sql.DB) Store {
 //	       If no element is found, the returned element will be empty
 //	       and the error will be nil.
 func (store Store) GetElement(symbol string) (models.Element, error) {
-	row := store.DB.QueryRow("SELECT name symbol atomic_weight FROM periodic_table WHERE symbol = ?", symbol)
+	row := store.DB.QueryRow("SELECT name, symbol, atomic_weight FROM periodic_table WHERE symbol = ?", symbol)
 
 	gottenElement := models.Element{}
 	err := row.Scan(&gottenElement.Name, &gottenElement.Symbol, &gottenElement.AtomicWeight)
@@ -138,7 +138,7 @@ func (store Store) GetElements(target models.Compound) ([]models.Element, error)
 //	}
 //	fmt.Println(compound.Name, compound.Appearance)
 func (store Store) GetCompound(formula string) (models.Compound, error) {
-	row := store.DB.QueryRow("SELECT formula name appearance FROM compounds WHERE formula = ?", formula)
+	row := store.DB.QueryRow("SELECT formula, name, appearance FROM compounds WHERE formula = ?", formula)
 
 	gottenCompound := models.Compound{}
 	err := row.Scan(&gottenCompound.Formula, &gottenCompound.Name, &gottenCompound.Appearance)

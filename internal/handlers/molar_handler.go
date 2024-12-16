@@ -3,7 +3,7 @@ package handlers
 import (
 	"ChemistryPR/internal/config"
 	"ChemistryPR/internal/database"
-	services "ChemistryPR/internal/service"
+	"ChemistryPR/internal/services"
 	"net/http"
 	"os"
 
@@ -64,7 +64,7 @@ func MolarGetHandler(c echo.Context) error {
 
 func MolarPostHandler(c echo.Context) error {
 	config := config.LoadConfig()
-	db, closeFunc, err := database.OpenDB(config.Driver, config.Dns)
+	db, closeFunc, err := database.OpenDB(config.Driver, "chem.db")
 	if err != nil {
 		log.Debug("pizda bd nakrilas")
 		panic("pizda bd nakrilas")

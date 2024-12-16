@@ -32,7 +32,7 @@
             <div class="molar-mass__form-section">
                 <p class="molar-mass__title">Молярная масса</p>
                 <form class="molar-mass__form" action="/molar" method="post">
-                    <input type="text" class="molar-mass__input" name="formula" id="input" placeholder={{.Formula}} />
+                    <input type="text" class="molar-mass__input" name="formula" id="input" placeholder="{{.Formula}}"/>
                     <button type="submit" class="molar-mass__submit-button">></button>
                 </form>
             </div>
@@ -40,22 +40,21 @@
             <div class="molar-mass__result-section">
                 <div class="molar-mass__total-mass">
                     <p class="molar-mass__total-title">Общая молярная масса</p>
-                    <p class="molar-mass__total-value">{{.Total}}</p>
+                    <p class="molar-mass__total-value">{{ .Total }}</p>
+                    <ul class="molar-mass__element-list">
+                        {{ range .Elements }}
+                        <li class="molar-mass__element">
+                            <span class="molar-mass__element-symbol">{{ .Symbol}}</span>
+                            <ul class="molar-mass__element-details">
+                                <li class="molar-mass__element-detail">Название: {{ .Name }}</li>
+                                <li class="molar-mass__element-detail">Масса в соединении: {{ .WeightInCompound }}</li>
+                                <li class="molar-mass__element-detail">Количество атомов: {{ .AtomsCount }}</li>
+                                <li class="molar-mass__element-detail">Процент массы: {{ .WeightPercent }}</li>
+                            </ul>
+                        </li>
+                        {{end}}
+                    </ul>
                 </div>
-
-                <ul class="molar-mass__element-list">
-                    {{range .Elements}}
-                    <li class="molar-mass__element">
-                        <span class="molar-mass__element-symbol">{{.Symbol}}</span>
-                        <ul class="molar-mass__element-details">
-                            <li class="molar-mass__element-detail">{{.Name}}</li>
-                            <li class="molar-mass__element-detail">{{.WeightInCompound}}</li>
-                            <li class="molar-mass__element-detail">{{.AtomsCount}}</li>
-                            <li class="molar-mass__element-detail">{{.WeightPercent}}</li>
-                        </ul>
-                    </li>
-                    {{end}}
-                </ul>
             </div>
         </main>
 

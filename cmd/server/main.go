@@ -2,7 +2,6 @@ package main
 
 import (
 	"ChemistryPR/internal/config"
-	"ChemistryPR/internal/database"
 	"ChemistryPR/internal/handlers"
 	"ChemistryPR/internal/logger"
 	"html/template"
@@ -29,12 +28,12 @@ func main() {
 	log := logger.SetupLogger(config.Env)
 	log.Info("Starting server")
 	log.Debug("Debug messages are enabled")
-	_, closeFunc, err := database.OpenDB(config.Driver, config.Dns)
-	if err != nil {
-		log.Debug("pizda")
-		panic("pizda")
-	}
-	defer closeFunc()
+	// _, closeFunc, err := database.OpenDB(config.Driver, config.Dns)
+	// if err != nil {
+	// 	log.Debug("pizda")
+	// 	panic("pizda")
+	// }
+	// defer closeFunc()
 
 	e := echo.New()
 
