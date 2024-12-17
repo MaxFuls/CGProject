@@ -1,6 +1,6 @@
 env : "dev"
 driver : "sqlite"
-dns : "~/Programs/ChemistryPR/chem.db"
+dns : "database/chem.db"
 http_server: 
   addres : "localhost"
   port: "8888"

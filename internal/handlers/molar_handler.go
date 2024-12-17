@@ -64,7 +64,7 @@ func MolarGetHandler(c echo.Context) error {
 
 func MolarPostHandler(c echo.Context) error {
 	config := config.LoadConfig()
-	db, closeFunc, err := database.OpenDB(config.Driver, "chem.db")
+	db, closeFunc, err := database.OpenDB(config.Driver, config.Dns)
 	if err != nil {
 		log.Debug("pizda bd nakrilas")
 		panic("pizda bd nakrilas")
